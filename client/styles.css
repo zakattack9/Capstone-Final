@@ -861,10 +861,81 @@ html, body {
 	transition: 0.5s;
 }
 
+/*QS START*/
+#quickSend{
+	height: 100vh;
+}
+.msgType{
+	margin: 20px;
+	padding: 10px;	
+	background-color: #F58F31;
+	color: white;
+	border-radius: 20px;
+	border-width: 5px;
+	border-style: solid; 
+	border-color: #F58F31;	
+	text-align: center;
+	transition: all 0.2s;
+	transition-timing-function: ease;
+}
+.msgType:hover { 
+	margin-left: 10px;
+	margin-right: 10px;
+    transition: all 0.2s;
+    transition-timing-function: ease-in;
+}
+#msgPanel{
+	height: 90vh;
+	width: 65%;
+	float: left;
+}
+#msgTypePanel{
+	float: left	;
+	width: 35%;
+	height: 90vh;
+}
+.tab{
+	background-color: #F58F31;
+	text-align: center;
+	color: white;
+	padding: 5px;
+	height: 10vh; 
+}
+.scroll{
+	overflow-y: scroll;
+	height: 90vh;
+}
 
-
-
-
-
-
-
+#qsContainer{
+	width: 70%;
+	height: 85%;
+	margin: auto;
+	margin-top: 40px;
+	background-color: #F58F31;
+	border-radius: 40px;
+}
+#qsType{
+	padding: 2px;
+}
+#typeHeader{
+	color: white;
+	text-align: center;
+}
+#msgContainer{
+	margin: auto;
+	background-color: white;
+	width: 85%;
+	height: 65%;
+	border-radius: 20px;
+	padding: 10px;
+}
+#qsSend{
+	background-color: #13896D;
+	height: 60px;
+	width: 200px;
+	margin: auto;
+	margin-top:15px;
+	text-align: center;
+	padding: 5px;
+	border-radius: 10px;
+}

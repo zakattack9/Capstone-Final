@@ -115,78 +115,88 @@
 					<div id="searchGrp">
 						<img src="./images/search.png">
 					</div>
-
-					<div id="searchBox">
-						<input type="text" id="searchInput" onkeyup="grpSearch();" placeholder=" Search for groups..">
-					</div>
-				</div>
-
-				<div id="addPopup">
-					<div id="popupBox">
-						<div id="closePopup">&times;</div>
-						<div id="popupTitle">Group Name:</div>
-						<input id="groupText" type="text">
-
-						<div id="createGrp"><!-- Send off ajax request to post new SNS topic -->
-							Create Group
-						</div>
-					</div>
-				</div>
-
-				<div id="deletePopup">
-					<div id="deleteBox">
-						<div id="closeDelPopup">&times;</div>
-						<div id="popupDelTitle">
-							Are you sure you want to delete:
-							<br>
-							<span id="warningMsg">Deleting a group will also delete its subscribers</span> 
-						</div>
-						
-						<div id="tableWrap">
-							<table id="selectedGroups">
-								
-							</table>
-						</div>
-
-						<div id="deleteGroup"><!-- Send off ajax request to post new SNS topic -->
-							Delete Group(s)
-						</div>
-					</div>
 				</div>
 
 				<table id="grpTable">
-					<thead>
-					  <tr>
-					  	<th>
-					  		<!-- OLD CUSTOM CHECKBOX
-					  		<label id="checkAll">
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label> 
-								-->
-					  		<div id="checkAll">
-	                
-	            	</div>
-					  	</th>
-					    <th>Group Name</th>
-					    <th>Number of Members</th>
-					    <th>Date Created</th>
-					  </tr>
-					</thead>
-					<tbody>
-
-					</tbody>
+				  <tr>
+				  	<th>
+				  		<label id="checkAll">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</th>
+				    <th>Group Name</th>
+				    <th>Number of Members</th>
+				    <th>Date Created</th>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Everyone</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Elderlies</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Deliverers</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Officers</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Text Capable</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
+				  <tr>
+				  	<td>
+				  		<label class="customBox">
+							  <input type="checkbox">
+							  <span class="checkmark"></span>
+							</label>
+				  	</td>
+				    <td>Email Capable</td>
+				    <td>1000</td>
+				    <td>March 4, 2018</td>
+				  </tr>
 				</table>
 
-				<div id="spinnerWrap">
-					<div class="spinner">
-					  <div class="rect1"></div>
-					  <div class="rect2"></div>
-					  <div class="rect3"></div>
-					  <div class="rect4"></div>
-					  <div class="rect5"></div>
-					</div>
-				</div>
 			</div>
 
 
@@ -452,20 +462,60 @@
 
 			</div>
 
-
 			<!--MESSAGES-->
 			<div class="hidden" id="messages">
 				
-
 			</div>
-
-
 			<!--QUICK SEND-->
 			<div class="hidden" id="quickSend"><!--broadcasts preset messages to EVERYONE-->
-				
 
+				<div id="msgTypePanel">
+					<div class="tab"><h2>Type</h2></div>
+					<div class="scroll">
+						<div class="msgType" id="traffic" onclick="switchType(this.id)"><h2>Traffic</h2></div>
+						<div class="msgType" id="storm" onclick="switchType(this.id)"><h2>Storm</h2></div>
+						<div class="msgType" id="tsunami" onclick="switchType(this.id)"><h2>Tsunami</h2></div>
+						<div class="msgType" id="earthquake" onclick="switchType(this.id)"><h2>Earthquake</h2></div>
+						<div class="msgType" id="other1"onclick="switchType(this.id)"><h2>Other1</h2></div>
+						<div class="msgType" id="other2"onclick="switchType(this.id)"><h2>Other2</h2></div>
+						<div class="msgType" id="other3"onclick="switchType(this.id)"><h2>Other3</h2></div>
+						<div class="msgType" id="other4"onclick="switchType(this.id)"><h2>Other4</h2></div>
+						<div class="msgType" id="other5"onclick="switchType(this.id)"><h2>Other5</h2></div>
+						<div class="msgType" id="other6"onclick="switchType(this.id)"><h2>Other6</h2></div>
+					</div>
+				</div>
+				<div id="msgPanel">
+					<div class="tab"><h2>Message</h2></div>
+					<div id="qsContainer">
+						<div id= "qsType">
+							<h2 id="typeHeader">Preview</h2>
+						</div>
+						<div id = "msgContainer">
+							<div id="traffic-msg" class="msg" style="display:none">
+								<p>
+								trafficasfdsfsa adipiscing elit, sed do <input type="textbox" name="date"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <input type="textbox" name="date"> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <input type="textbox" name="date"> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  <input type="textbox" name="date"> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								</p>
+							</div>
+							<div id="storm-msg" class="msg" style="display:none">
+								<p>
+									storms fsadfsdaf sadfsad fsa fsad <input type="textbox" name="date"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <input type="textbox" name="date"> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <input type="textbox" name="date"> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  <input type="textbox" name="date"> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								</p>
+							</div>
+							<div id="tsunami-msg" class="msg" style="display:none">
+								<p>
+									fasfd asfs TSUNAMI TSUNAMI FSAFSADo <input type="textbox" name="date"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <input type="textbox" name="date"> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <input type="textbox" name="date"> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  <input type="textbox" name="date"> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								</p>
+							</div>
+							<div id="earthquake-msg" class="msg" style="display:none">
+								<p>
+									Lorem ipsum EARTHQUAKEFSDAFDSFS, sed do <input type="textbox" name="date"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <input type="textbox" name="date"> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <input type="textbox" name="date"> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  <input type="textbox" name="date"> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								</p>
+							</div>
+						</div>
+						<div id = "qsSend">Send!</div>
+					</div>
+				</div>
 			</div>
-
 		</div>		
 	</div>
 

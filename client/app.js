@@ -345,3 +345,21 @@ $('.singleSub').on('mousedown', function(event){
 
 
 //SUBSCRIBERS JS END
+
+//QS START
+function switchType(el){
+	var header = el.charAt(0).toUpperCase() + el.slice(1);
+	for (var i = 0; i < document.getElementsByClassName('msgType').length; i++) {
+		document.getElementsByClassName('msgType')[i].style.backgroundColor="#F58F31";
+		document.getElementsByClassName('msgType')[i].style.color="white";
+		document.getElementsByClassName('msgType')[i].style="border-color: #F58F31;";
+	}
+	document.getElementById(el).style.backgroundColor="white";
+	document.getElementById(el).style.color="#F58F31";
+	document.getElementById(el).style.borderColor= "#F58F31";
+	document.getElementById('typeHeader').innerHTML=header;
+	for (var i = 0; i < document.getElementsByClassName('msg').length; i++) {
+		document.getElementsByClassName('msg')[i].style.display="none";
+	}
+	document.getElementById(el+"-msg").style.display="block";
+}
