@@ -347,7 +347,10 @@ $('.singleSub').on('mousedown', function(event){
 //SUBSCRIBERS JS END
 
 //QS START
+var currentType;
 function switchType(el){
+	currentType=el;
+	console.log(currentType)
 	var header = el.charAt(0).toUpperCase() + el.slice(1);
 	for (var i = 0; i < document.getElementsByClassName('msgType').length; i++) {
 		document.getElementsByClassName('msgType')[i].style.backgroundColor="#F58F31";
@@ -362,4 +365,35 @@ function switchType(el){
 		document.getElementsByClassName('msg')[i].style.display="none";
 	}
 	document.getElementById(el+"-msg").style.display="block";
+}
+
+var editing = false;
+function editMsg(){
+	if (editing == false){
+		editing=true;
+		document.getElementById(currentType+"-msg").style.display="none";
+		document.getElementById('editBox').style.display="block";
+	    var htmlText = document.getElementById(currentType+"-msg").innerHTML;
+		var regex = /placeholder="\s*(.*?)\s*">/g;
+		htmlText = htmlText.replace("<p>","");
+		htmlText = htmlText.replace("</p>","");
+		while (m = regex.exec(htmlText)) {
+			htmlText = htmlText.replace('<input type="textbox" placeholder="'+m[1]+'">',"{"+m[1]+"}");
+		}
+		document.getElementById("editBox").value = htmlText;
+		document.getElementById('edit/save').src='./images/save.png'
+	}
+	else{
+		editing=false;
+		document.getElementById(currentType+"-msg").style.display="block";
+		document.getElementById('editBox').style.display="none";
+	    var htmlText = document.getElementById("editBox").value;
+		var regex = /{\s*(.*?)\s*}/g;
+		while (m = regex.exec(htmlText)) {
+			console.log(m[1])
+			htmlText = htmlText.replace("{"+m[1]+"}",'<input type="textbox" placeholder="'+m[1]+'">');
+		}
+		document.getElementById(currentType+"-msg").innerHTML = "<p>"+htmlText+"</p>";
+		document.getElementById('edit/save').src='./images/edit.png';
+	}	
 }
