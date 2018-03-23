@@ -903,7 +903,7 @@ html, body {
 	height: 10vh; 
 }
 .scroll{
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: 90vh;
 }
 
@@ -917,10 +917,12 @@ html, body {
 }
 #qsType{
 	padding: 2px;
+	text-align: center;
 }
 #typeHeader{
 	color: white;
 	text-align: center;
+	display: inline-block;
 }
 #msgContainer{
 	margin: auto;
@@ -933,16 +935,17 @@ html, body {
 }
 #qsSend{
 	background-color: #13896D;
-	height: 60px;
-	width: 200px;
+	height: 50px;
+	width: 190px;
 	margin: auto;
 	margin-top:15px;
 	text-align: center;
-	padding: 5px;
+	vertical-align: middle;
+	line-height: 50px;  
 	border-radius: 10px;
 }
 .msg{
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: 100%;
 	display: none;
 }
@@ -953,7 +956,7 @@ html, body {
 	bottom: 10px;
     right: 10px;
     text-align: center;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -972,4 +975,13 @@ html, body {
 }
 #editBox{
 	width: 100%;
+	resize: none;
+}
+#edit-saveType{
+	width: 20px;
+	height: 20px;	
+}
+#editTypeBox{
+	display: none;
+
 }

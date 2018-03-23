@@ -365,6 +365,13 @@ function switchType(el){
 		document.getElementsByClassName('msg')[i].style.display="none";
 	}
 	document.getElementById(el+"-msg").style.display="block";
+	document.getElementById('editBox').style.display="none";
+	document.getElementById('edit-saveMsg').src='./images/edit.png';
+	document.getElementById('editButton').style.display="flex";
+
+	document.getElementById('editBox').style.display="none";
+	document.getElementById('edit-saveMsg').src='./images/edit.png';
+	document.getElementById('editButton').style.display="flex";
 }
 
 var editing = false;
@@ -381,7 +388,7 @@ function editMsg(){
 			htmlText = htmlText.replace('<input type="textbox" placeholder="'+m[1]+'">',"{"+m[1]+"}");
 		}
 		document.getElementById("editBox").value = htmlText;
-		document.getElementById('edit/save').src='./images/save.png'
+		document.getElementById('edit-saveMsg').src='./images/save.png'
 	}
 	else{
 		editing=false;
@@ -394,6 +401,29 @@ function editMsg(){
 			htmlText = htmlText.replace("{"+m[1]+"}",'<input type="textbox" placeholder="'+m[1]+'">');
 		}
 		document.getElementById(currentType+"-msg").innerHTML = "<p>"+htmlText+"</p>";
-		document.getElementById('edit/save').src='./images/edit.png';
-	}	
+		document.getElementById('edit-saveMsg').src='./images/edit.png';
+	}
+}
+var typeEditing =false;
+function editType(){
+	if(typeEditing==false){
+		typeEditing=true;
+		document.getElementById("typeHeader").style.display="none";
+		document.getElementById('editBox').value = currentType;
+		document.getElementById('editBox').style.display="inline-block";
+		document.getElementById('edit-saveType').src='./images/save.png'
+
+	}
+	else{
+		typeEditing=false;
+		document.getElementById(currentType).innerHTML = "<h3>"+document.getElementById('editBox').value+"</h3>"
+		document.getElementById(currentType).style.display="inline-block";
+		$(currentType+"-msg").prev(currentType+"-msg").attr("id",currentType+"-msg");
+		currentType = document.getElementById('editBox').value;
+		console.log(currentType)
+		document.getElementById("typeHeader").innerHTML = "<h3>"+currentType+"</h3>"
+		document.getElementById("typeHeader").style.display="inline-block";
+		document.getElementById('editBoxType').style.display="none";
+		document.getElementById('edit-saveType').src='./images/edit.png'
+	}
 }
