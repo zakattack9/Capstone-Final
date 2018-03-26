@@ -351,7 +351,6 @@ var currentType;
 function switchType(el){
 	currentType=el;
 	console.log(currentType)
-	var header = el.charAt(0).toUpperCase() + el.slice(1);
 	for (var i = 0; i < document.getElementsByClassName('msgType').length; i++) {
 		document.getElementsByClassName('msgType')[i].style.backgroundColor="#F58F31";
 		document.getElementsByClassName('msgType')[i].style.color="white";
@@ -360,11 +359,11 @@ function switchType(el){
 	document.getElementById(el).style.backgroundColor="white";
 	document.getElementById(el).style.color="#F58F31";
 	document.getElementById(el).style.borderColor= "#F58F31";
-	document.getElementById('typeHeader').innerHTML=header;
+	document.getElementById('typeHeader').innerHTML=el;
 	for (var i = 0; i < document.getElementsByClassName('msg').length; i++) {
 		document.getElementsByClassName('msg')[i].style.display="none";
 	}
-	document.getElementById(el+"-msg").style.display="block";
+	document.getElementById(currentType+"-msg").style.display="block";
 	document.getElementById('editBox').style.display="none";
 	document.getElementById('edit-saveMsg').src='./images/edit.png';
 	document.getElementById('editButton').style.display="flex";
@@ -372,12 +371,20 @@ function switchType(el){
 	document.getElementById('editBox').style.display="none";
 	document.getElementById('edit-saveMsg').src='./images/edit.png';
 	document.getElementById('editButton').style.display="flex";
+
+	document.getElementById("typeHeader").style.display="inline-block";
+	document.getElementById('edit-saveType').src='./images/edit.png'
+	document.getElementById('edit-saveType').style.display="inline-block"
+	if (tempId!==null) {
+		document.getElementById('editBox').value = tempId;
+	}
 }
 
 var editing = false;
 function editMsg(){
 	if (editing == false){
 		editing=true;
+		console.log(currentType+"-msg")
 		document.getElementById(currentType+"-msg").style.display="none";
 		document.getElementById('editBox').style.display="block";
 	    var htmlText = document.getElementById(currentType+"-msg").innerHTML;
@@ -389,6 +396,7 @@ function editMsg(){
 		}
 		document.getElementById("editBox").value = htmlText;
 		document.getElementById('edit-saveMsg').src='./images/save.png'
+		document.getElementById('edit-saveType').style.display="none";
 	}
 	else{
 		editing=false;
@@ -402,28 +410,34 @@ function editMsg(){
 		}
 		document.getElementById(currentType+"-msg").innerHTML = "<p>"+htmlText+"</p>";
 		document.getElementById('edit-saveMsg').src='./images/edit.png';
+		document.getElementById('edit-saveType').style.display="inline-block";
 	}
 }
 var typeEditing =false;
+var tempId=null;
 function editType(){
 	if(typeEditing==false){
 		typeEditing=true;
 		document.getElementById("typeHeader").style.display="none";
 		document.getElementById('editBox').value = currentType;
+		tempId=currentType;
 		document.getElementById('editBox').style.display="inline-block";
 		document.getElementById('edit-saveType').src='./images/save.png'
-
+		document.getElementById('editButton').style.display="none";
 	}
 	else{
 		typeEditing=false;
+		console.log(document.getElementById('editBox').value)
 		document.getElementById(currentType).innerHTML = "<h3>"+document.getElementById('editBox').value+"</h3>"
-		document.getElementById(currentType).style.display="inline-block";
-		$(currentType+"-msg").prev(currentType+"-msg").attr("id",currentType+"-msg");
-		currentType = document.getElementById('editBox').value;
-		console.log(currentType)
-		document.getElementById("typeHeader").innerHTML = "<h3>"+currentType+"</h3>"
+		document.getElementById(currentType).style.display="block";
+		document.getElementById("typeHeader").innerHTML = document.getElementById('editBox').value
 		document.getElementById("typeHeader").style.display="inline-block";
-		document.getElementById('editBoxType').style.display="none";
+		
+		document.getElementById(currentType).setAttribute("id", document.getElementById('editBox').value);
+		document.getElementById(currentType+"-msg").setAttribute("id", document.getElementById('editBox').value+"-msg");
+		currentType = document.getElementById('editBox').value;
+		document.getElementById('editBox').style.display="none";
 		document.getElementById('edit-saveType').src='./images/edit.png'
+		document.getElementById('editButton').style.display="inline-block";
 	}
 }

@@ -918,6 +918,7 @@ html, body {
 #qsType{
 	padding: 2px;
 	text-align: center;
+	height: 50px;
 }
 #typeHeader{
 	color: white;
@@ -975,13 +976,13 @@ html, body {
 }
 #editBox{
 	width: 100%;
-	resize: none;
+	display: none;
 }
 #edit-saveType{
 	width: 20px;
 	height: 20px;	
+	display: none;
 }
 #editTypeBox{
 	display: none;
-
 }
