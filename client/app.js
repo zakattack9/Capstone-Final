@@ -397,6 +397,7 @@ function editMsg(){
 		document.getElementById("editBox").value = htmlText;
 		document.getElementById('edit-saveMsg').src='./images/save.png'
 		document.getElementById('edit-saveType').style.display="none";
+		document.getElementById('note').style.display="block";
 	}
 	else{
 		editing=false;
@@ -411,6 +412,7 @@ function editMsg(){
 		document.getElementById(currentType+"-msg").innerHTML = "<p>"+htmlText+"</p>";
 		document.getElementById('edit-saveMsg').src='./images/edit.png';
 		document.getElementById('edit-saveType').style.display="inline-block";
+		document.getElementById('note').style.display="none";
 	}
 }
 var typeEditing =false;

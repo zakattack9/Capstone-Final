@@ -955,6 +955,11 @@ html, body {
 	height: 100%;
 	display: none;
 }
+.msgBox{
+	overflow-y: auto;
+	height: 90%;
+	display: none;
+}
 #editButton{
 	background: lightgrey;
 	position: absolute;
@@ -980,7 +985,6 @@ html, body {
 }
 #editBox{
 	width: 100%;
-	resize: none;
 }
 #edit-saveType{
 	width: 20px;
@@ -989,5 +993,8 @@ html, body {
 	margin-left: 5px;
 }
 #editTypeBox{
+	display: none;
+}
+#note{
 	display: none;
 }
