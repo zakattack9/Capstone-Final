@@ -918,6 +918,11 @@ html, body {
 #qsType{
 	padding: 2px;
 	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
 	height: 50px;
 }
 #typeHeader{
@@ -959,7 +964,6 @@ html, body {
     text-align: center;
     display: none;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     transition: all 0.15s;
     transition-timing-function: ease-out;
@@ -976,12 +980,13 @@ html, body {
 }
 #editBox{
 	width: 100%;
-	display: none;
+	resize: none;
 }
 #edit-saveType{
 	width: 20px;
 	height: 20px;	
 	display: none;
+	margin-left: 5px;
 }
 #editTypeBox{
 	display: none;

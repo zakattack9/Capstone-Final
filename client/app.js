@@ -419,24 +419,24 @@ function editType(){
 	if(typeEditing==false){
 		typeEditing=true;
 		document.getElementById("typeHeader").style.display="none";
-		document.getElementById('editBox').value = currentType;
+		document.getElementById('editTypeBox').value = currentType;
 		tempId=currentType;
-		document.getElementById('editBox').style.display="inline-block";
+		document.getElementById('editTypeBox').style.display="inline-block";
 		document.getElementById('edit-saveType').src='./images/save.png'
 		document.getElementById('editButton').style.display="none";
 	}
 	else{
 		typeEditing=false;
-		console.log(document.getElementById('editBox').value)
-		document.getElementById(currentType).innerHTML = "<h3>"+document.getElementById('editBox').value+"</h3>"
+		console.log(document.getElementById('editTypeBox').value)
+		document.getElementById(currentType).innerHTML = "<h3>"+document.getElementById('editTypeBox').value+"</h3>"
 		document.getElementById(currentType).style.display="block";
-		document.getElementById("typeHeader").innerHTML = document.getElementById('editBox').value
+		document.getElementById("typeHeader").innerHTML = document.getElementById('editTypeBox').value
 		document.getElementById("typeHeader").style.display="inline-block";
 		
-		document.getElementById(currentType).setAttribute("id", document.getElementById('editBox').value);
-		document.getElementById(currentType+"-msg").setAttribute("id", document.getElementById('editBox').value+"-msg");
-		currentType = document.getElementById('editBox').value;
-		document.getElementById('editBox').style.display="none";
+		document.getElementById(currentType).setAttribute("id", document.getElementById('editTypeBox').value);
+		document.getElementById(currentType+"-msg").setAttribute("id", document.getElementById('editTypeBox').value+"-msg");
+		currentType = document.getElementById('editTypeBox').value;
+		document.getElementById('editTypeBox').style.display="none";
 		document.getElementById('edit-saveType').src='./images/edit.png'
 		document.getElementById('editButton').style.display="inline-block";
 	}
