@@ -39,6 +39,7 @@ module.exports.editQuickSend = (event, context, callback) => {
         body: JSON.stringify(res)
       }
       callback(null, response);
+    })
     .catch(err => {
       console.log(err.stack);
       const response = {
