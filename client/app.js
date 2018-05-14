@@ -20,14 +20,66 @@ function switchWorkspace(el) {
 		children[i].classList.remove("visisble");
 		children[i].classList.add("hidden");
 	}
+	
 	document.getElementById(elClass).classList.remove("hidden");
 	document.getElementById(elClass).classList.add("visisble");
+
+
+	$("#optionsGroup").on('click','.option', function(){ //keeps sidebar items white
+	  $(this).addClass('active');
+	  $(this).siblings().removeClass('active');
+	});
+	$("#mobileOptionsGroup").on('click','.mobileOption', function(){ //keeps sidebar items white
+	  $(this).addClass('active');
+	  $(this).siblings().removeClass('active');
+	})
+
+	$('#mobileSearchInput').val('');
+	$('#mobileSearch')[0].style.height = "0px";
+	mobileSearch(this);
+
+	// $('.dropdown').removeClass('activeDots');
+	// $('.dropdown').css('display', 'none');
+	if($(window).width() < 900) {
+		console.log('hiding mobile bar');
+		$('#barProp').toggleClass('toggleMenuSize');
+		$('#barProp')[0].style.width = "0";
+		$('#menu')[0].style.display = "none";
+	}
 }
 
-$("#optionsGroup").on('click','.option', function(){ //keeps sidebar items white
-  $(this).addClass('active');
-  $(this).siblings().removeClass('active');
+$('#menuImg').on('click', function () { //opens/closes the menu 
+	$('#barProp').toggleClass('toggleMenuSize');
+	console.log('open/close');
+
+	if($('#barProp').hasClass('toggleMenuSize')) {
+		$('#barProp')[0].style.width = "0";
+		$('#menu')[0].style.display = "none";
+	} else {
+		$('#barProp')[0].style.width = "220px";
+		$('#menu')[0].style.display = "block";
+	}
 })
+
+$(window).resize(function(){
+	if($(window).width() >= 900) {
+		$('#barProp')[0].style.width = "220px";
+		$('#menu')[0].style.display = "block";
+	}
+})
+// $('.mobileOption').on('click', function () { //automatically closes the menu upon option selection
+// 	$('#barProp').toggleClass('toggleMenuSize');
+// 	console.log('open/close');
+
+// 	if($('#barProp').hasClass('toggleMenuSize')) {
+// 		$('#barProp')[0].style.width = "0";
+// 		$('#menu')[0].style.display = "none";
+// 	} else {
+// 		$('#barProp')[0].style.width = "220px";
+// 		$('#menu')[0].style.display = "block";
+// 	}
+// })
+
 
 //BROADCAST JS START
 var openOverlay;
@@ -35,8 +87,13 @@ $('#msgInput').on('click', function(){ //opens overlay for messages
 	$('#groupInput').removeAttr('ondrop ondragover');
 	$('#msgInput').attr({ondrop:'drop(event, this)', ondragover:'allowDrop(event)'});
 
-	$('#groupOverlay')[0].style.width = "0";
-	$('#msgOverlay')[0].style.width = "400px";
+	if ($(window).width() <= 599) {
+		$('#groupOverlay')[0].style.width = "0";
+		$('#msgOverlay')[0].style.width = "270px";
+	} else {
+		$('#groupOverlay')[0].style.width = "0";
+		$('#msgOverlay')[0].style.width = "400px";
+	}
 	openOverlay = 'msg';
 })
 
@@ -44,10 +101,36 @@ $('#groupInput').on('click', function(){ //opens overlay for groups
 	$('#msgInput').removeAttr('ondrop ondragover');
 	$('#groupInput').attr({ondrop:'drop(event, this)', ondragover:'allowDrop(event)'});
 
-	$('#msgOverlay')[0].style.width = "0";
-	$('#groupOverlay')[0].style.width = "400px";
+	if ($(window).width() <= 599) {
+		console.log("you can do something with this");
+		$('#groupOverlay')[0].style.width = "270px";
+		$('#msgOverlay')[0].style.width = "0";
+	} else {
+		$('#groupOverlay')[0].style.width = "400px";
+		$('#msgOverlay')[0].style.width = "0";
+	}
+
+	// $('#msgOverlay')[0].style.width = "0";
+	// $('#groupOverlay')[0].style.width = "400px";
 	openOverlay = 'group';
 })
+
+$(window).resize(function(){ //resizes overlays when window is resized
+	if ($(window).width() <= 599 && $('#msgOverlay').width() !== 0) { //resizes msg overlay
+		$('#groupOverlay')[0].style.width = "0";
+		$('#msgOverlay')[0].style.width = "270px";
+	} else if ($(window).width() > 599 && $('#msgOverlay').width() !== 0) {
+		$('#groupOverlay')[0].style.width = "0";
+		$('#msgOverlay')[0].style.width = "400px";
+	} else if ($(window).width() <= 599 && $('#groupOverlay').width() !== 0) { //resizes grp overlay
+		$('#groupOverlay')[0].style.width = "270px";
+		$('#msgOverlay')[0].style.width = "0";
+	} else if ($(window).width() > 599 && $('#groupOverlay').width() !== 0) {
+		$('#groupOverlay')[0].style.width = "400px";
+		$('#msgOverlay')[0].style.width = "0";
+	}
+})
+
 
 $('#closeMsg').on('click', function(){ //closes message overlay
 	$('#msgOverlay')[0].style.width = "0";
@@ -79,6 +162,7 @@ function drop(event, element) {
   var data = event.dataTransfer.getData("Text");
   
   if($('.broadcast')[0].classList[2] === 'active'){ //only expands message if the broadcast tab is open
+	  console.log('dropping in broadcast');
 	  if(element.id === 'msgInput' || element.id === 'groupInput'){ //expands message on drop
 	  	console.log(element.id)
 	  	if(element.id === 'groupInput' && document.getElementById(data).classList[0] === 'draggableMsg'){
@@ -98,7 +182,9 @@ function drop(event, element) {
 	  		dontAppend = true; //prevents messages from being dragged into grp overlay and groups from being dragged into msg overlay
 	  	}
 	  }
-	}else if($('.subscribers')[0].classList[2] === 'active'){ //checks if subs tab is open (expands card for clone button)
+
+	} else if($('.subscribers')[0].classList[2] === 'active'){ //checks if subs tab is open (expands card for clone button)
+		console.log('dropping in subs');
 		if(element.id === 'tempInp'){ //expands message on drop
 			clearTimeout(timer);
 
@@ -162,7 +248,7 @@ function drop(event, element) {
 		if(element.children.length > 0  && document.getElementById(data) != element.children[0]){
 			let tempInpGrpID = element.children[0].id.split('-')[0];
 			let grpCol = "#grp_" + tempInpGrpID;
-
+			console.log('hidden msg');
 			element.children[0].style.width = "255px"; //sets card back to original height
 	 	  element.children[0].style.height = "80px";
 			$(grpCol).prepend(element.children[0])
@@ -285,6 +371,7 @@ $('#checkAll').click(function(){ //checks all boxes on/off
 })
 
 $('#reloadGrp').click(function(){ //runs refresh button animation
+	console.log('grp reload');
 	if($('#reloadGrp img')[0].style.animationName == "reload"){
 		$('#reloadGrp img')[0].style.animationName = "resetReload";
 	}else{
@@ -430,10 +517,13 @@ function grpSearch() { //filters group on search
 
 //SUBSCRIBERS JS START
 $('#subsTab').click(function() {
+	console.log('i been click');
 	$('#subsTab')[0].style.backgroundColor = '#EAEAEA'; //could condense using css jquery property
 	$('#grpTab')[0].style.backgroundColor = '#fcd8b6';
 	$('#subsTab')[0].style.position = 'relative';
 	$('#grpTab')[0].style.position = '';
+
+	$('#subsTab')[0].style.zIndex = '2';
 
 	$('#openSub')[0].style.display = 'block';
 	$('#openGrp')[0].style.display = 'none';
@@ -452,6 +542,7 @@ $('#subsTab').click(function() {
 
 let showSave = false;
 $('#grpTab').click(function() {
+	console.log('group tab been click');
 	$('#subsTab')[0].style.backgroundColor = '#fcd8b6';
 	$('#grpTab')[0].style.backgroundColor = 'white';
 	$('#grpTab')[0].style.position = 'relative';
@@ -460,7 +551,7 @@ $('#grpTab').click(function() {
 	$('#openSub')[0].style.display = 'none';
 	$('#openGrp')[0].style.display = 'block';
 
-	$('#subsIconRow')[0].style.left = '204px';
+	$('#subsIconRow')[0].style.left = '203px';
 
 	$('#addSubPop')[0].style.display = "none";
 	$('#delSubPop')[0].style.display = "none";
@@ -477,6 +568,32 @@ $('#grpTab').click(function() {
 	$('#grpTab').addClass('groupTabOpen');
 })
 
+$(window).resize(function() { //returns user to subscription managing page if on grp drag/drop
+	if ($(window).width() <= 1229) {
+		console.log('setting to subscriptions');
+		$('#subsTab')[0].style.backgroundColor = '#EAEAEA'; //could condense using css jquery property
+		$('#grpTab')[0].style.backgroundColor = '#fcd8b6';
+		$('#subsTab')[0].style.position = 'relative';
+		$('#grpTab')[0].style.position = '';
+
+		$('#subsTab')[0].style.zIndex = '2';
+
+		$('#openSub')[0].style.display = 'block';
+		$('#openGrp')[0].style.display = 'none';
+
+		$('#subsIconRow')[0].style.left = '317px';
+
+		$('#searchBoxSub')[0].style.width = "0px"; //closes search field if open
+		$('#searchInputSub').val(''); //empties values of search field
+		subSearch();
+
+		$('#saveSub')[0].style.left = "-40px";
+		$('#saveSub')[0].style.top = "0px";
+
+		$('#grpTab').removeClass('groupTabOpen');
+	}
+});
+
 $('#reloadSub').click(function(){ //runs refresh button animation for subs tab
 	if($('#reloadSub img')[0].style.animationName == "reload"){
 		$('#reloadSub img')[0].style.animationName = "resetReload";
@@ -490,7 +607,6 @@ $('#addSub').click(function() {
 	$('#addSubPop')[0].style.display = "block";
 	$('#delSubPop')[0].style.display = "none";
 })
-
 
 let subIDs = [];
 function deleteSelectedSubs() {
@@ -653,7 +769,7 @@ function subGrpSearch() { //filters group on search
   }
 }
 
-var changedSubs = []
+var changedSubs = [];
 function changeSubGroup(id) {
 	//first two digits of a sub's id is their original group id
 	//the last two digits is their sub id
@@ -760,7 +876,7 @@ $('#saveSub').click(function() { //saves changes to subscribers who switched gro
     }
  	}
 
-	
+
 	changedSubs = []; //resets sub queue
 	showSave = false; //hides save icon
 	$('#saveSub')[0].style.left = "-40px";
@@ -858,6 +974,17 @@ function checkMsg(msgCheck) {
 	enableDeleteMsgs();
 
 }
+
+// function enableDeleteMsgs() {
+// 	//console.log($('#grpTable tbody').find('.isCheckedBackground').length);
+// 	if($('#msgCol').find('.msgReady').length !== 0) {
+// 		$('#trashMsg').attr("onclick", "deleteSelectedMsgs();");
+// 		$('#trashMsg')[0].style.opacity = "1";
+// 	}else {
+// 		$('#trashMsg').removeAttr("onclick");
+// 		$('#trashMsg')[0].style.opacity = "0.5";
+// 	}
+// }
 
 $('#addMsg').click(function(){
 	$('#addMsgPopup')[0].style.display = "block";
@@ -989,14 +1116,119 @@ $('#saveMessage').click(function(){
 			$('#reloadMsg img')[0].style.animationPlayState = "running";
 		}
 })
+
+
+$('#searchMsg').click(function(){//SEARCH MESSAGE
+	if($('#msgSearchBox')[0].style.width === "150px"){
+		$('#msgSearchInput').val('');
+		msgSearch(); //needs to run grpSearch() again to reset values
+		$('#msgSearchBox')[0].style.width = "0px";
+		console.log('closing');
+	}else {
+		$('#msgSearchBox')[0].style.width = "150px";
+	}
+})
+
+//adapted from: https://www.w3schools.com/howto/howto_js_filter_lists.asp
+function msgSearch() { //filters group on search
+  var input, filter, msgInstance, searchName;
+  input = $("#msgSearchInput");
+  filter = input.val().toUpperCase();
+  msgInstance = $('.msgGradient');
+  for (var i = 0; i < msgInstance.length; i++) {
+    searchName = msgInstance[i].getElementsByClassName("message")[0];
+    if (searchName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      msgInstance[i].style.display = "";
+    } else {
+      msgInstance[i].style.display = "none";
+    }
+  }
+}
 //MESSAGES JS END
 
 
 
 
 //QUICK SEND JS START
+
+//switch between message type and message
+$('.tab').on('click', function () {
+	console.log(this);
+	if ($(this).attr('id') == 'qsTypeTab'){
+		// $('#msgTypePanel')[0].addClass('activePanel');
+		// $('#msgPanel')[0].removeClass('activePanel');
+
+		$('#msgTypePanel')[0].style.display = 'block';
+		$('#msgPanel')[0].style.display = 'none';
+	} else{
+		// $('#msgPanel')[0].addClass('activePanel');
+		// $('#msgTypePanel')[0].removeClass('activePanel');
+		$('#msgPanel')[0].style.display = 'block';
+		$('#msgTypePanel')[0].style.display = 'none';
+	}
+	$('#qsTypeTab').toggleClass('activePanel');
+	$('#qsMessageTab').toggleClass('activePanel');
+})
+
+$('.msgType').on('click', function () {
+	$('#msgPanel')[0].style.display = 'block';
+	$('#msgTypePanel')[0].style.display = 'none';
+})
+
 var currentType;
+var currentPanel = "type";
+
+$(window).resize(function(){
+    if ($(window).width()>=800){
+    	$("#msgPanel").css("display","block")
+		$("#msgTypePanel").css("display","block")
+		$("#qsBack").css("display","none")
+
+		$("#typeTitle").css("display","block")
+		$("#qsmsgTitle").css("display","block")
+    }
+    else{
+	    if (currentPanel=="type"){
+	    	$("#msgPanel").css("display","none")
+			$("#msgTypePanel").css("display","block")
+			$("#qsBack").css("display","none")
+
+			$("#typeTitle").css("display","block")
+			$("#qsmsgTitle").css("display","none")
+	    }
+	    else if (currentPanel=="message"){
+	    	$("#msgPanel").css("display","block")
+			$("#msgTypePanel").css("display","none")
+			$("#qsBack").css("display","block")
+
+			$("#typeTitle").css("display","none")
+			$("#qsmsgTitle").css("display","block")
+	    }
+    }
+
+});
+$('#qsBack').on('click', function () {
+	console.log("bacl")
+	currentPanel = "type"
+	$("#msgPanel").css("display","none")
+	$("#msgTypePanel").css("display","block")
+	$("#typeTitle").css("display","block")
+	$("#qsmsgTitle").css("display","none")
+	$("#qsBack").css("display","none")
+})
+
 function switchType(el){
+	if ($(window).width()<=799){
+		currentPanel = "message"
+		console.log("slide")
+		$("#msgPanel").css("display","block")
+		$("#qsmsgTitle").css("display","block")
+		$("#msgTypePanel").css("display","none")
+		$("#typeTitle").css("display","none")
+		$("#qsBack").css("display","block")
+
+	}
+
 	currentType=el;
 	console.log(currentType)
 	for (var i = 0; i < document.getElementsByClassName('msgType').length; i++) {
@@ -1115,5 +1347,155 @@ function editType(){
 		editQS();
 	}
 }
-
 //QUICK SEND JS END
+
+
+
+//TOOLBAR JS START
+
+$('.dropIcon').on('click', function(){
+	let dropdown = $(this).parent().find('.dropdown');
+	dropdown.toggleClass('activeDots');
+	if (dropdown.hasClass('activeDots') === true) {
+		dropdown.css('display', 'flex');
+		// dropdown.show()
+		// removed show and hide because it 'shows' as block instead of flex
+	} else {
+		dropdown.css('display', 'none');
+		// dropdown.hide()
+	}
+	console.log('clicking dots');
+})
+
+$(window).resize(function(){
+	if ($(window).width() >= 900) {
+		$('.dropdown').show();
+		console.log('afdf');
+	}
+});
+
+//TOOLBAR JS END
+
+
+//MESSAGES TAB AFTER START
+// this makes sure the width of the popups are the same as the container
+$('.afterBtn').on('click', function(){
+	let correctWidth = $('.visisble').width();
+	$('.msgAfter').width(correctWidth);
+})
+
+$(window).resize(function(){
+	let correctWidth = $('.visisble').width();
+	$('.msgAfter').width(correctWidth);
+});
+//MESSAGES TAB AFTER END
+
+
+//SEARCH BAR JS START
+let searchIds = [];
+
+$('.searchAll').on('click', function(){
+	console.log(this.id);
+	searchIds.push(this.id);
+	console.log(searchIds);
+	$('#mobileSearchInput').focus();
+})
+
+function mobileSearch(html) { //may need to fix the event listener for mobile
+	let target = searchIds[searchIds.length - 1];
+	console.log('accessing ' + target + ' statements');
+	if (target == 'searchGrp') {
+		var input, filter, tbody, trow, searchName;
+		input = $("#mobileSearchInput");
+		filter = input.val().toUpperCase();
+		tbody = $("#grpTable tbody");
+		trow = $("#grpTable tbody tr");
+		for (var i = 0; i < trow.length; i++) {
+			searchName = trow[i].getElementsByClassName("groupName")[0];
+			if (searchName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				trow[i].style.display = "";
+			} else {
+				trow[i].style.display = "none";
+	    	}
+  		}
+	} else if (target == 'searchSub') {
+		var input, filter, tbody, trow, searchName;
+		input = $("#mobileSearchInput");
+		filter = input.val().toUpperCase();
+		tbody = $("#subsTable tbody");
+		trow = $("#subsTable tbody tr");
+		for (var i = 0; i < trow.length; i++) {
+			searchName = trow[i].getElementsByClassName("subName")[0];
+			if (searchName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				trow[i].style.display = "";
+			} else {
+				trow[i].style.display = "none";
+			}
+  		}
+	} else if (target == 'searchMsg') {
+		var input, filter, msgInstance, searchName;
+		input = $("#mobileSearchInput");
+		filter = input.val().toUpperCase();
+		msgInstance = $('.msgGradient');
+		for (var i = 0; i < msgInstance.length; i++) {
+			searchName = msgInstance[i].getElementsByClassName("message")[0];
+			if (searchName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				msgInstance[i].style.display = "";
+			} else {
+				msgInstance[i].style.display = "none";
+			}
+		}
+	}
+}
+
+
+$('.searchAll').click(function(){//SEARCH MESSAGE
+	if ($(window).width() <= 899) {
+		
+		if($('#mobileSearch').height() != 0){
+			$('#mobileSearchInput').val('');
+			$('#mobileSearch')[0].style.height = "0px";
+			mobileSearch(this); //needs to run mobileSearch() again to reset values
+			console.log('closing');
+		}else {
+			console.log('open mobile search');
+			$('#mobileSearch')[0].style.height = "45px";
+		}
+	}
+})
+
+$(window).resize(function(){
+	if ($(window).width() >= 900){
+		$('#mobileSearchInput').val('');
+		$('#mobileSearch')[0].style.height = "0px";
+	}
+	mobileSearch(this);
+
+})
+
+$('#closeMobileSearch').on('click', function(){
+	$('#mobileSearchInput').val('');
+	$('#mobileSearch')[0].style.height = "0px";
+	mobileSearch(this);
+})
+//SEARCH BAR JS END
+
+// WORKSPACE INTEGRATION JS
+$(document).ready(function() {
+	if ($(window).width() >= 900) {
+		$('#barProp').addClass('sideBar')
+	} else {
+		$('#barProp').addClass('menuOverlay')
+	}
+})
+
+$(window).resize(function(){
+	if ($(window).width() >= 900) {
+		$('#barProp').addClass('sideBar');
+		$('#barProp').removeClass('menuOverlay');
+	} else {
+		$('#barProp').addClass('menuOverlay');
+		$('#barProp').removeClass('sideBar');
+	}
+})
+// WORKSPACE INTEGRATION JS END

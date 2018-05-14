@@ -22,7 +22,64 @@ html, body {
 	height: 100%;
 }
 
-#sideBar {
+/*////////MENU Styles///////*/
+.menuOverlay {
+	width: 220px;
+	background-color: #13896D;
+	font-family: 'Roboto Slab', serif;
+	height: 100%;
+	z-index: 2;
+	position: absolute;
+	transition: 0.2s;
+}
+
+#mobileLogo {/*menu icon*/
+	width: 50px;
+	float: left;
+	margin: 7px;
+}
+
+#mobileLogin {
+	height: 100px;
+}
+
+#mobileUsername {
+	font-size: 35px;
+	overflow: auto;
+	line-height: 65px;
+	color: #F58F31;
+}
+
+#openMenu {
+	width: 48px;
+    height: 60px;
+    position: absolute;
+    background-color: #F58F31;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    right: -48px;
+    top: 5px;
+}
+
+#openMenu img {
+	width: 30px;
+    height: 35px;
+    position: relative;
+    filter: brightness(65%);
+    right: -7px;
+    top: 11px;
+}
+
+.toggleMenuSize {
+	width: 0px;
+}
+/*
+#openMenu img:hover {
+	cursor: pointer;
+}*/
+/*////////MENU Styles END///////*/
+
+.sideBar {
 	font-family: 'Roboto Slab', serif;
 	height: 100%;
 	width: 220px;
@@ -63,6 +120,7 @@ html, body {
 	height: 50px;
 	line-height: 50px;
 	padding-left: 30px;
+	user-select: none;
 }
 
 .option:hover {
@@ -73,6 +131,23 @@ html, body {
 .option:focus {
 	background-color: white;
 }
+
+/*mobile option styles*/
+.mobileOption {
+	height: 50px;
+	line-height: 50px;
+	padding-left: 30px;
+}
+
+.mobileOption:hover {
+	background-color: white;
+	transition: 0.2s;
+}
+
+.mobileOption:focus {
+	background-color: white;
+}
+/*mobile option styles END*/
 
 .hidden {
 	display: none;
@@ -92,6 +167,21 @@ html, body {
 	width: 100%;
 }
 
+#broadcastTopBar {
+	width: 100%;
+	height: 65px;
+	background-color: #F58F31;
+}
+
+#broadcastTitle {
+	font-family: 'Roboto Slab', serif;
+	font-size: 25px;
+	text-align: center;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+}
+
 #msgMakerSpace {
 	height: 100%;
 	width: 650px;
@@ -103,8 +193,7 @@ html, body {
 	width: 550px;
 	border-radius: 4%;
 	background-color: #F58F31;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 	margin-top: 5vh;
 	border-top-left-radius: 0;
 	border-bottom-right-radius: 0;
@@ -130,6 +219,12 @@ html, body {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
+	position: relative;
+}
+
+#groups {
+	width: 100%;
+	height: 100%;
 	position: relative;
 }
 
@@ -229,15 +324,15 @@ html, body {
 
 #msgOverlay {
 	z-index: 1;
-  position: fixed;
-  top: 0;
+	position: fixed;
+	top: 0;
 	right: 0;
-  height: 100%;
-  width: 0;
-  background-color: #c9e5e8;
-  overflow-x: hidden;
-  transition: 0.3s;
-}
+	height: 100%;
+	width: 0;
+	background-color: #c9e5e8;
+	overflow-x: hidden;
+	transition: 0.3s;
+	}
 
 #msgOverlayWrap {
 	height: 100%;
@@ -245,12 +340,12 @@ html, body {
 
 #newMsg {
 	display: block;
-  width: 30px;
-  font-size: 30px;
-  position: absolute;
+	width: 30px;
+	font-size: 30px;
+	position: absolute;
 	top: 5px;
 	right: 20px;
-  cursor: default;
+	cursor: default;
 }
 
 #newMsg:hover {
@@ -260,15 +355,15 @@ html, body {
 
 #groupOverlay {
 	z-index: 1;
-  position: fixed;
-  top: 0;
+	position: fixed;
+	top: 0;
 	right: 0;
-  height: 100%;
-  width: 0;
-  /*background-color: #81c3ca;*/
-  background-color: #5db2bb;
-  overflow-x: hidden;
-  transition: 0.3s;
+	height: 100%;
+	width: 0;
+	/*background-color: #81c3ca;*/
+	background-color: #5db2bb;
+	overflow-x: hidden;
+	transition: 0.3s;
 }
 
 #groupOverlayWrap {
@@ -277,14 +372,14 @@ html, body {
 
 #closeMsg, #closeGroup{
 	display: block;
-  transform: rotate(0deg);
-  width: 30px;
-  font-size: 30px;
-  position: absolute;
+	transform: rotate(0deg);
+	width: 30px;
+	font-size: 30px;
+	position: absolute;
 	top: 5px;
 	left: 20px;
-  cursor: default;
-  transition: 0.3s;
+	cursor: default;
+	transition: 0.3s;
 }
 
 #closeMsg:hover, #closeGroup:hover {
@@ -360,37 +455,20 @@ html, body {
 	line-height: 65px;
 }
 
-#trashGrp {
-	position: absolute;
-	top: 17px;
-	margin-left: 15px;
-	transition: 0.2s;
-	opacity: 0.5;
-}
 
 #trashGrp img{
 	width: 30px;
 	border-radius: 50%;
 }
 
-#addGrp {
-	position: absolute;
-	top: 17px;
-	right: 0;
-	margin-right: 15px;
-	transition: 0.2s;
-}
+
 
 #addGrp img{
 	width: 30px;
 	border-radius: 50%;
 }
 
-#reloadGrp {
-	position: absolute;
-	top: 16px;
-	margin-left: 50px;
-}
+
 
 #reloadGrp img{
 	width: 32px;
@@ -398,24 +476,13 @@ html, body {
 	animation: reload 0.3s ease-in-out forwards paused;
 }
 
-#searchGrp {
-	position: absolute;
-	top: 16px;
-	margin-left: 85px;
-}
+
 
 #searchGrp img{
 	width: 32px;
 }
 
-#searchBox {
-	width: 0;
-	position: absolute;
-	top: 19px;
-	margin-left: 120px;
-	overflow: hidden;
-	transition: 0.2s;
-}
+
 
 #searchBox input {
 	height: 23px;
@@ -434,7 +501,7 @@ html, body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-  z-index: 1;
+ 	z-index: 3;
 }
 
 #addPopup:after, #deletePopup:after {
@@ -449,27 +516,25 @@ html, body {
 }
 
 #popupBox{
-	width: 50%;
-	height: 20%;
+	height: 15%;
 	background-color: white;
 	border-radius: 15px;
 	opacity: 1;
 	position: relative;
-	top: 30%;
-	left: 15%;
+	top: 18%;
 	z-index: 2;
-	padding-bottom: 5px;
+	padding-bottom:45px;
 }
 
 #deleteBox {
-	width: 50%;
+	/*width: 50%;*/
 	padding-bottom: 55px;
 	background-color: white;
 	border-radius: 15px;
 	opacity: 1;
 	position: relative;
 	top: 20%;
-	left: 15%;
+	/*left: 15%;*/
 	z-index: 2;
 }
 
@@ -550,11 +615,12 @@ html, body {
 #selectedGroups {
 	width: 80%;
 	position: relative;
-	left: 50px;
+	left: 10%;
 }
 
 #selectedGroupText {
 	height: 30px;
+	margin-bottom: 35px;
 }
 
 #grpTable {
@@ -565,7 +631,7 @@ html, body {
 
 #grpTable tbody {
 	display: block;
-	max-height: 550px;
+	/*max-height: 550px;*/
 	overflow-y: auto;
 }
 
@@ -586,9 +652,9 @@ html, body {
 }
 
 #grpTable th {
-  border-left: darkgray 2px solid;
-  border-right: darkgray 2px solid;
-  border-bottom: darkgray 2px solid;
+	border-left: darkgray 2px solid;
+	border-right: darkgray 2px solid;
+	border-bottom: darkgray 2px solid;
 }
 
 #grpTable td {
@@ -635,27 +701,27 @@ html, body {
 
 #checkAll {
 	position: relative;
-  top: 2px;
-  left: 17px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: 21px;
-  width: 21px;
-  border-radius: 5px;
-  box-shadow: inset 0 0 3px darkgray;
+	top: 2px;
+	left: 17px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	height: 21px;
+	width: 21px;
+	border-radius: 5px;
+	box-shadow: inset 0 0 3px darkgray;
 }
 
 .customCheck {
 	position: relative;
-  left: 17px;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: inset 0 0 3px darkgray;
+	left: 17px;
+	height: 20px;
+	width: 20px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: inset 0 0 3px darkgray;
 }
 
 /* .customBox input:checked ~ .checkmark, #checkAll input:checked ~ .checkmark  {
@@ -664,14 +730,14 @@ html, body {
 } */
 
 #grpTable td:first-child, #grpTable th:first-child {
-  border-left: none;
-  text-align: center;
-  box-sizing: border-box;
-  width: 55px;
+	border-left: none;
+	text-align: center;
+	box-sizing: border-box;
+	width: 55px;
 }
 
 #grpTable td:last-child, #grpTable th:last-child {
-  border-right: none;
+	border-right: none;
 }
 
 #grpTable tr th:not(:first-child) {
@@ -732,6 +798,7 @@ html, body {
 
 #subsTab, #grpTab {
 	z-index: 2;
+	position: relative;
 	width: 200px;
 	height: 40px;
 	text-align: center;
@@ -753,49 +820,15 @@ html, body {
 	margin-right: 10px;
 }
 
-#subsIconRow {
-	z-index: 0;
-	position: relative;
-	left: 317px;
-	bottom: 12px;
-	width: 380px;
-	height: 35px;
-	margin-top: 30px; 
-	display: inline-block;
-	float: left;
-	overflow: hidden;
-	opacity: 1;
-	transition: 0.2s;
-}
-
 /*sub icons*/
-#trashSub {
-	display: inline-block;
-	margin-right: 2px;
-	transition: 0.2s;
-	opacity: 0.5;
-}
-
 #trashSub img{
 	width: 30px;
 	border-radius: 50%;
 }
 
-#addSub {
-	display: inline-block;
-	margin-right: 2px;
-	transition: 0.2s;
-}
-
 #addSub img{
 	width: 31px;
 	border-radius: 50%;
-}
-
-#reloadSub {
-	display: inline-block;
-	margin-right: 1px;
-	transition: 0.2s;
 }
 
 #reloadSub img{
@@ -804,22 +837,12 @@ html, body {
 	animation: reload 0.3s ease-in-out forwards paused;
 }
 
-#searchSub {
-	display: inline-block;
-	margin-right: 2px;
-	transition: 0.2s;
-}
-
 #searchSub img{
 	width: 32px;
 }
 
 #searchBoxSub {
-	width: 0;
-	display: inline-block;
-	margin-bottom: 3px;
-	overflow: hidden;
-	transition: 0.2s;
+	top: ;
 }
 
 #searchBoxSub input {
@@ -871,7 +894,7 @@ html, body {
 	height: 100%;
 	top: 0;
 	opacity: 0.7;
-  filter: blur(1px);
+ 	filter: blur(1px);
 }
 
 #addSubBox {
@@ -1026,14 +1049,14 @@ html, body {
 }
 
 #delSubBox {
-	width: 50%;
+	/*width: 50%;*/
 	background-color: white;
 	padding-bottom: 55px;
 	border-radius: 15px;
 	opacity: 1;
 	position: relative;
 	top: 20%;
-	left: 26%;
+	/*left: 26%;*/
 	z-index: 2;
 }
 
@@ -1192,7 +1215,8 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #88CCF1; 
+    background: #88CCF1;
+    width: 15px;
 }
 
 #openGrp {
@@ -1329,7 +1353,6 @@ html, body {
 }
 
 /*	MESSAGE TOP BAR	START 	*/
-
 #msgsTopBar {
 	width: 100%;
 	height: 65px;
@@ -1348,22 +1371,9 @@ html, body {
 	transition: 0.2s;
 }
 
-#trashMsg {
-	position: absolute;
-	top: 17px;
-	margin-left: 15px;
-	transition: 0.2s;
-}
-
 #trashMsg img {
 	width: 30px;
 	border-radius: 50%;
-}
-
-#reloadMsg {
-	position: absolute;
-	top: 16px;
-	margin-left: 50px;
 }
 
 #reloadMsg img{
@@ -1372,21 +1382,8 @@ html, body {
 	animation: reload 0.3s ease-in-out forwards paused;
 }
 
-#searchMsg {
-	position: absolute;
-	top: 16px;
-	margin-left: 85px;
-}
-
 #searchMsg img{
 	width: 32px;
-}
-
-#addMsg {
-	position: absolute;
-	top: 17px;
-	right: 0;
-	margin-right: 15px;
 }
 
 #addMsg img {
@@ -1421,20 +1418,20 @@ html, body {
 }
 
 #checkAll2 {
-  position: relative;
-  top: 19px;
-  left: 17px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	position: relative;
+	top: 19px;
+	left: 17px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #checkAll2 input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
 }
 
 #openOldMsg {
@@ -1558,17 +1555,17 @@ html, body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
- 	z-index: 1;
+ 	z-index: 4;
 }
 
-#addMsgPopup {
+/*#addMsgPopup {
 	z-index: 3;
-}
+}*/
 
-#addMsgPopup:after, #deleteMsgPopup:after, #editMsgPopup:after, #addMsgPopupBC:after {
+#addMsgPopup:after, #deleteMsgPopup:after, #editMsgPopup:after {
 	content: '';
 	position: absolute;
-	background-color: lightgray;
+	background-color: #e6e6e6;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -1633,9 +1630,9 @@ html, body {
 }
 
 #selectedMessages {
-	width: 85%;
-	position: relative;
-	left: 45px;
+	width: 90%;
+    position: relative;
+    left: 5%;
 }
 
 #selectedMessages tr td:first-child {
@@ -1658,10 +1655,9 @@ html, body {
 #typeMsg, #editMsgHere {
 	font-size: 14px;
 	width: 90%;
-	height: 80%;
+	height: 200px;
 	margin-left: 4%;
 	outline: none;
-	height: 200px;
 	resize: none;
 }
 
@@ -1741,38 +1737,22 @@ html, body {
 #quickSend{
 	height: 100vh;
 }
-.msgType{
-	margin: 20px;
-	padding: 10px;	
-	color: #333333;
-	border-radius: 20px;
-	border-width: 5px;
-	border-style: solid; 
-	border-color: #F58F31;	
+#quickSendTopBar {
+	width: 100%;
+	height: 65px;
+	background-color: #F58F31;
+}
+
+#quickSendTitle {
+	font-family: 'Roboto Slab', serif;
+	font-size: 25px;
 	text-align: center;
-	transition: all 0.2s;
-	transition-timing-function: ease;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
 }
 
-.msgType:hover { 
-	margin-left: 10px;
-	margin-right: 10px;
-  transition: all 0.2s;
-  transition-timing-function: ease-in;
-}
-
-#msgPanel{
-	height: 90vh;
-	width: 65%;
-	float: left;
-}
-
-#msgTypePanel{
-	float: left	;
-	width: 35%;
-	height: 90vh;
-}
-
+/*////panel styles/////*/
 .tab{
 	background-color: #F58F31;
 	text-align: center;
@@ -1782,9 +1762,66 @@ html, body {
 	font-size: 18px;
 }
 
+#qsChoosePanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#qsPanelContainer {
+	transition: 0.2s;
+}
+
+/*////panel styles END/////*/
+
+.msgType{
+	margin: 10px;
+	padding: 10px;	
+	color: #333333;
+	border-radius: 20px;
+	border-width: 5px;
+	border-style: solid; 
+	border-color: #F58F31;	
+	text-align: center;
+	transition: all 0.2s;
+	transition-timing-function: ease;
+	cursor: pointer;
+}
+
+.msgType:hover { 
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: white;
+	color: #F58F31;
+	border-color: #F58F31;
+ 	transition: all 0.2s;
+ 	transition-timing-function: ease-in;
+}
+
+
+#msgTypePanel{
+	float: left;
+	width: 35%;
+	height: 91vh;
+}
+
+#msgPanel{
+	height: 91vh;
+	width: 65%;
+	float: left;
+	display: block;
+}
+
+.activePanel {
+	background-color: #F58F31;
+	color: white;
+	border-color: #F58F31;	
+
+}
+
 .scroll{
 	overflow-y: auto;
-	height: 90vh;
+	height: 91vh;
 	user-select: none;
 }
 
@@ -1840,8 +1877,9 @@ html, body {
 	margin: auto;
 	margin-top: 60px;
 	background-color: #F58F31;
-	border-radius: 4%;
+	border-radius: 25px;
 }
+
 #qsType{
 	padding: 2px;
 	text-align: center;
@@ -1852,11 +1890,13 @@ html, body {
 	align-items: center;
 	height: 50px;
 }
+
 #typeHeader{
 	color: white;
 	text-align: center;
 	display: inline-block;
 }
+
 #msgContainer{
 	margin: auto;
 	background-color: white;
@@ -1865,18 +1905,20 @@ html, body {
 	border-radius: 20px;
 	padding: 10px;
 	position: relative;
+	margin-bottom: 5%;
 }
+
 #qsSend{
 	background-color: #13896D;
-	height: 50px;
-	width: 190px;
+	height: 10%;
+	width: 30%;
 	margin: auto;
-	margin-top: 5%;
 	text-align: center;
 	vertical-align: middle; 
 	border-radius: 10px;
 	transition: 0.2s;
 	user-select: none;
+	position: bottom;
 }
 
 #qsSend:hover {
@@ -1910,8 +1952,8 @@ html, body {
 	height: 90%;
 	display: none;
 	outline: none;
-  border: darkgray solid 2px;
-  border-radius: 20px;
+	border: darkgray solid 2px;
+  	border-radius: 20px;
 	resize: none;
 	line-height: 20px;
 }
@@ -1926,14 +1968,14 @@ input {
 	position: absolute;
 	padding: 5px 10px;   
 	bottom: 10px;
-  right: 10px;
-  text-align: center;
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  transition: all 0.15s;
-  transition-timing-function: ease-out;
-  border-radius: 20px;
+	right: 10px;
+	text-align: center;
+	display: none;
+	flex-direction: row;
+	align-items: center;
+	transition: all 0.15s;
+	transition-timing-function: ease-out;
+	border-radius: 20px;
 }
 #editButton img{
 	width:32px;
@@ -1942,8 +1984,8 @@ input {
 }
 #editButton:hover{
 	padding-left:20px;   
-  transition: all 0.15s;
-  transition-timing-function: ease-in;
+	transition: all 0.15s;
+	transition-timing-function: ease-in;
 }
 #editBox{
 	width: 100%;
@@ -1978,4 +2020,102 @@ input {
 	margin-left: 4%;
 	color: red;
 	font-style: italic;
+}
+  
+/*TOOL DROP DOWN STYLES (group, subscribers, messages)*/
+
+.verticalDots {
+	width: 100%;
+	height: 65px;
+	z-index: 3;
+	top: 0;
+}
+
+.dropIcon {
+	z-index: 3;
+    width: 30px;
+    height: 28px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    filter: contrast(38%);
+    margin-right: 15px;
+}
+
+.dropdown {
+	width: 100%;
+	height: 65px;
+	position: absolute;
+	z-index: 0;
+	top:0;
+}
+#qsBack {
+	position: absolute;
+	top: 17px;
+	right: 17px;
+    margin-left: 60px;
+    transition: 0.1s;
+    opacity: 0.5;
+    width: 32px;
+    display: none;
+}
+#qsBack img{
+	width: 32px;
+}
+
+#qsBack:hover {
+	transform: scale(1.05);
+	color: white;
+	transition: 0.4s;
+}
+#typeTitle{
+	width: 35%;
+	float: left;
+	height : 65px;
+}
+
+#qsmsgTitle{
+	width: 65%;
+	float: left;
+	height : 65px;
+}
+
+/*SEARCH BAR STYLES*/
+#mobileSearch {
+	width: 100%;
+	height: 0;
+	z-index: 5;
+	position: absolute;
+	bottom: 0;
+	background-color: #F9C834;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden; /*hides input when height = 0*/
+	transition: 0.2s;
+}
+
+#mobileSearchInput {
+	width: 85%;
+}
+
+#mobileSearch img {
+	width: 32px;
+}
+
+#closeMobileSearch {
+    font-size: 26px;
+    margin: auto 5px;
+    cursor: pointer;
+}
+
+#closeMobileSearch:hover {
+	transform: scale(1.2);
+	transition: 0.2s;
+}
+/**/
+
+#grpSpinner {
+	position: absolute;
+	top: 173px;
 }

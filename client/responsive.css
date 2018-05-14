@@ -1,0 +1,576 @@
+@media (min-width: 300px) and (max-width: 1200px) {
+	/*////////SCROLL BAR Styles///////*/
+	::-webkit-scrollbar { /*scroll bar styling */
+		height: 0px;
+		width: 0px;
+	}
+
+	/*////////SIDE BAR Styles///////*/
+	#sideBar {
+		display: none;
+	}
+
+	/*////////WORKSPACE Styles///////*/
+	#workspace {
+		overflow: auto;
+	}
+
+	/*////////BROADCAST Styles///////*/
+	#msgMakerSpace {
+		width: 100%
+	}
+
+	#msgMaker {
+		width: 90%;
+		height: 92%;
+		border-radius: 25px;
+	}
+
+	#msgSpace {
+		height: 40vh;
+		padding-top: 2%;
+	}
+
+	#msgInput {
+		margin-top: 7px;
+	}
+
+	#groupSpace {
+		height: 39vh;
+	}
+
+	#groupInput {
+		margin-top: 9px;
+		height: 80%;
+	}
+
+	#recentMsgs {
+		width: 100%;
+		border-left: none;
+		border-top: 2px darkgray solid;
+	}
+
+	/*////////GROUPS Styles///////*/
+
+	/*////////SUBSCRIBERS Styles///////*/
+		#subscribers {
+			overflow: auto;
+			scroll-behavior: auto;
+		}
+
+		/*#grpTab, #subsTab {
+			display: none;
+		}*/
+	/*////////MESSAGES Styles///////*/
+	#msgCol {
+		column-count: 1;
+		/*padding-bottom: 0;*/
+	}
+
+	.msgGradient {
+	/*	padding-left: 0;
+		padding-right: 0;*/
+	}
+
+	/*////////QUICK SEND Styles///////*/
+
+}
+
+@media (min-width: 600px) and (max-width: 1200px) {
+
+	#sideBar {
+		display: none;
+	}
+
+	/*////////WORKSPACE Styles///////*/
+	#workspace {
+		overflow: auto;
+	}
+
+	/*////////MESSAGES Styles///////*/
+	#msgCol {
+		column-count: 2;
+		padding-bottom: 0;
+	}
+
+	.msgGradient {
+		margin: 2px 5px;
+	}
+}
+
+
+@media (max-width: 450px) {
+	/*table styles*/
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top:-9999px;
+		left: -9999px;
+	}
+
+	tr {
+		border: 1px solid #ccc;
+	}
+
+	td {
+		border: none;
+		/*border-bottom: 1px solid #eee;*/
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		position: absolute;
+		left: 6px;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	td, th {
+		padding: 6px;
+	}
+
+	#selectedMessages tr {
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}
+
+	#selectedMessages tr td:first-child {
+		border-bottom: none;
+	}
+
+	#delSubTitle {
+		padding-bottom: 52px;
+		margin-bottom: 0;
+	}
+
+	#selectedSubs tr:first-child {
+		margin-top: 0;
+	}
+
+	#selectedSubsWrap {
+		margin-top: 0;
+		padding-bottom: 35px;
+	}
+
+	#msgPopupTitle, #popupMsgDelTitle, #popupMsgEditTitle {
+		padding-bottom: 10px;
+	}
+
+	.customCheck {
+		left: 14em;
+	}
+
+	#grpTable tr td:not(:first-child) {
+		padding-left: 14em;
+	}
+
+	#grpTable td {
+		border-bottom: none;
+	}
+
+	#grpTable tr:not(:first-child) td:nth-of-type(1):before { content: "Checkbox"; } /*adds "Checkbox" label to all except "Everyone" row*/
+	#grpTable td:nth-of-type(2):before { content: "Group Name"; }
+	#grpTable td:nth-of-type(3):before { content: "Number of Members"; }
+	#grpTable td:nth-of-type(4):before { content: "Date Created"; }
+
+	.customCheckSub {
+		left: 14em;
+	}
+
+	#subsTable tr td:not(:first-child) {
+		padding-left: 14em;
+	}
+
+	#subsTable td {
+		border-bottom: none;
+	}
+
+	#subsTable td:nth-of-type(1):before { content: "Checkbox"; }
+	#subsTable td:nth-of-type(2):before { content: "Name"; }
+	#subsTable td:nth-of-type(3):before { content: "Medium"; }
+	#subsTable td:nth-of-type(4):before { content: "Contact"; }
+}
+
+@media (max-width: 390px) {
+	#subsTitle {
+		font-size: 21px;
+	}
+
+	#grpTable tr td:not(:first-child) {
+		padding-left: 10em;
+	}
+
+	#subsTable tr td:not(:first-child) {
+		padding-left: 10em;
+	}
+
+	.customCheck {
+		left: 10em;
+	}
+	.customCheckSub {
+		left: 10em;
+	}
+
+	#qsContainer {
+		width: 90%;
+	}
+
+
+}
+
+@media (max-width: 899px) { /*styles for tool bar*/
+	.dropdown {
+		right: 0;
+		width: 56px;
+		height: 400px;	
+		background-color: #3d8f55;
+		position: absolute;
+		top: 16vh;
+		z-index: 3;
+		border-top-left-radius: 30px; 
+		border-bottom-left-radius: 30px;
+		display: none;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		transition: 0.2s;
+	}
+
+	#subsTitle {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	/*ICON STYLES*/
+	#subsIconRow {
+		height: 400px;
+		width: 56px;
+		display: flex;
+	    flex-direction: column;
+	    justify-content: space-around;
+	    align-items: center;
+	}
+
+	/*.activeDots {opens dropdown mobile
+		width: 56px;
+		display: flex;
+	}*/
+
+	#searchBox { /*fix later*/
+		display: none;
+	}
+
+	#searchBoxSub {
+		display: none;
+	}
+
+	#msgSearchBox {
+		display: none;
+	}
+	/*ICON STYLES END*/
+
+	/*#selectedGroupText tr td {
+		border-top: none;
+		border-bottom: none;
+	}*/
+
+	/*POPUP STYLES*/
+	.mobilePopup {
+		width: 80%;
+		left: 10%;
+	}
+	/*POPUP STYLES END*/
+
+
+
+	/*BOX STYLES*/
+	#popupBox {
+    	width: 80%;
+    	left: 10%;
+	}
+
+	#msgPopupBox {
+		width: 80%;
+		left: 10%;
+	}
+	/*BOX STYLES END*/
+
+	
+	/*QS STYLES*/
+	#qsContainer {
+		margin-top: 14px;
+	}
+}
+
+@media (min-width: 900px){
+	.mobilePopup {
+		width: 50%;
+		left: 25%;
+	}
+
+	.dropIcon {
+		display: none;
+	}
+
+	#sideBar {
+		display: block;
+	}
+
+	#menuOverlay {
+		display: none;
+	}
+
+	/*tool bar styles*/
+		
+	/*.verticalDots {
+		position: absolute;
+		right: 0;
+	}*/
+
+	/*BOX STYLES*/
+	#delSubBox {
+		width: 50%;
+		left: 25%;
+	}
+
+	/*#msgPopupBox {
+		width: 50%;
+		left: 17%;
+	}*/
+
+	/*GROUP ICON STYLES*/
+	#trashGrp {
+		position: absolute;
+		top: 17px;
+		margin-left: 15px;
+		transition: 0.1s;
+		opacity: 0.5;
+	}
+	#addGrp {
+		position: absolute;
+		top: 17px;
+		right: 0;
+		margin-right: 15px;
+		transition: 0.2s;
+	}
+	#reloadGrp {
+		position: absolute;
+		top: 16px;
+		margin-left: 50px;
+	}
+	#searchGrp {
+		position: absolute;
+		top: 16px;
+		margin-left: 85px;
+	}
+	#searchBox {
+		width: 0;
+		position: absolute;
+		top: 19px;
+		margin-left: 120px;
+		overflow: hidden;
+		transition: 0.2s;
+	}
+	/*GROUP ICON STYLES END*/
+	/*SUB ICON STYLES*/
+	#subsIconRow {
+		z-index: 0;
+		position: relative;
+		left: 317px;
+		bottom: 12px;
+		width: 380px;
+		height: 35px;
+		margin-top: 30px; 
+		display: inline-block;
+		float: left;
+		overflow: hidden;
+		opacity: 1;
+		transition: 0.2s;
+	}
+
+	#trashSub {
+		display: inline-block;
+		margin-right: 2px;
+		transition: 0.2s;
+		opacity: 0.5;
+	}
+	#addSub {
+		display: inline-block;
+		margin-right: 2px;
+		transition: 0.2s;
+	}
+	#reloadSub {
+		display: inline-block;
+		margin-right: 1px;
+		transition: 0.2s;
+	}
+	#searchSub {
+		display: inline-block;
+		margin-right: 2px;
+		transition: 0.2s;
+	}
+	#searchBoxSub {
+		width: 0;
+		display: inline-block;
+		margin-bottom: 3px;
+		overflow: hidden;
+		transition: 0.2s;
+	}
+	/*SUB ICON STYLES END*/
+	/*MSG ICON STYLES*/
+	#trashMsg {
+		position: absolute;
+		top: 17px;
+		margin-left: 15px;
+		transition: 0.1s;
+		opacity: 0.5;
+	}
+	#addMsg {
+		position: absolute;
+		top: 17px;
+		right: 220px;
+		margin-right: 15px;
+		transition: 0.2s;
+	}
+	#reloadMsg {
+		position: absolute;
+		top: 16px;
+		margin-left: 50px;
+	}
+	#searchMsg {
+		position: absolute;
+		top: 16px;
+		margin-left: 85px;
+	}
+	#msgSearchBox {
+		width: 0;
+		position: absolute;
+		top: 19px;
+		margin-left: 120px;
+		overflow: hidden;
+		transition: 0.2s;
+	}
+	/*MSG ICON STYLES END*/
+
+
+
+
+}
+
+@media (min-width: 1200px) {
+	#broadcastTopBar {
+		display: none;
+	}
+}
+
+/*QUICK SEND */
+@media (max-width: 799px) {
+	#msgPanel,#qsmsgTitle{
+		width: 100%;
+		display: none;
+	}
+	#msgTypePanel,#typeTitle{
+		width: 100%;
+	}
+	#qsBack{
+		display:none;
+	}
+}
+
+@media (min-width: 800px){
+	#msgPanel,#qsmsgTitle{
+	    width : 65%;
+	}
+	#msgTypePanel,#typeTitle{
+		width: 35%;
+	}
+}
+
+
+
+/*///////POPUP STYLES///////*/
+@media (min-width: 375px) and (max-width: 375px) {
+	#groupText {
+		margin-left: 6%;
+	}
+}
+
+@media (min-width: 375px) and (max-width: 414px) {
+	#groupText {
+		margin-left: 4%;
+		width: 87%;
+		margin-top: 2%;
+	}
+}
+
+@media (max-width: 400px) {
+
+	#popupDelTitle {
+	    font-size: 16px;
+	    padding-top: 4.5%;
+	}
+
+	#tableWrap {
+	    margin-top: 33px;
+	}
+
+	#selectedGroupText {
+	    margin-bottom: 35px;
+	}
+
+}
+
+@media (max-width: 525px) {
+	/*#delSubBox {
+		width: 78%;
+		left: 15%;
+	}*/
+
+	#selectedSubs {
+		width: 80%;
+		left: 10%;
+	}
+
+	#selectedSubs tr {
+		margin-top: 35px;
+	}
+
+
+}
+
+@media (max-width: 800px) {
+	#addSubBox {
+		width: 82%;
+		left: 9%;
+	}
+}
+
+@media (min-width: 415px) and (max-width: 768px) {
+	#groupText {
+		margin-left: 4%;
+		width: 92%;
+	}
+}
+
+@media (max-width: 340px) {/*font fix on popups*/
+	#popupDelTitle, #popupMsgDelTitle {
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 525px) and (max-width: 715px) {
+	#delSubTitle {
+		/*padding-bottom: 12px;*/
+	}
+}
+
+@media (max-width: 1229px) {
+	#grpTab, #subsTab {
+		display: none;
+	}
+}

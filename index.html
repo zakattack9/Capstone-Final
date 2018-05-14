@@ -7,11 +7,11 @@
 	<link rel="icon" href="./images/lanakilaLogo.png"> <!-- For tab icon -->
 	<link rel="stylesheet" type="text/css" href="./client/animations.css">
 	<link rel="stylesheet" type="text/css" href="./client/styles.css">
+	<link rel="stylesheet" type="text/css" href="./client/responsive.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Noto+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<script>
 		window.onbeforeunload = function() {
 		  if(showSave) {
@@ -27,36 +27,74 @@
 <body>
 
 	<div id="container">
-		<div id="sideBar">
-			<div id="login">
-				<img id="logo" src="./images/lanakilaLogo.png">
-				<div id="username">Lanakila</div>
+		<!-- <div id="menuOverlay">
+			<div id="openMenu">
+				<img id="menuImg" src="./images/menu.png">
 			</div>
 
-			<div id="optionsGroup">
-				<div onclick="switchWorkspace(this);" class="option broadcast">BROADCAST</div>
-				<div onclick="switchWorkspace(this);" class="option groups">GROUPS</div>
-				<div onclick="switchWorkspace(this);" class="option subscribers">SUBSCRIBERS</div>
-				<div onclick="switchWorkspace(this);" class="option messages">MESSAGES</div>
-				<div onclick="switchWorkspace(this);" class="option quickSend">QUICK SEND</div>
+			<div id="menu">
+				
+				<div id="mobileLogin">				
+					<img id="mobileLogo" src="./images/lanakilaLogo.png">
+					<div id="mobileUsername">Lanakila</div>
+				</div>
+
+				<div id="mobileOptionsGroup">
+					<div onclick="switchWorkspace(this);" class="mobileOption broadcast">BROADCAST</div>
+					<div onclick="switchWorkspace(this);" class="mobileOption groups">GROUPS</div>
+					<div onclick="switchWorkspace(this);" class="mobileOption subscribers">SUBSCRIBERS</div>
+					<div onclick="switchWorkspace(this);" class="mobileOption messages">MESSAGES</div>
+					<div onclick="switchWorkspace(this);" class="mobileOption quickSend">QUICK SEND</div>
+				</div>
+			</div>
+		</div> -->
+
+		<div id="mobileSearch">
+			<div id="closeMobileSearch">&times;</div>
+			<input type="text" id="mobileSearchInput" onkeyup="mobileSearch(this);" placeholder=" Search for an item...">
+			<!-- <img src="./images/search.png"> -->
+		</div>
+
+		<div id="barProp">
+			<div id="openMenu">
+				<img id="menuImg" src="./images/menu.png">
+			</div>
+			<div id="menu">
+				
+				<div id="login">
+					<img id="logo" src="./images/lanakilaLogo.png">
+					<div id="username">Lanakila</div>
+				</div>
+
+				<div id="optionsGroup">
+					<div onclick="switchWorkspace(this);" class="option broadcast">BROADCAST</div>
+					<div onclick="switchWorkspace(this);" class="option groups">GROUPS</div>
+					<div onclick="switchWorkspace(this);" class="option subscribers">SUBSCRIBERS</div>
+					<div onclick="switchWorkspace(this);" class="option messages">MESSAGES</div>
+					<div onclick="switchWorkspace(this);" class="option quickSend">QUICK SEND</div>
+				</div>
 			</div>
 			
 		</div>
 
 		<div id="workspace">
 			<div id="addMsgPopup">
-						<div id="msgPopupBox">
-							<div id="closeMsgPopup">&times;</div>
-							<div id="msgPopupTitle">Message:</div>
-							<textarea rows="10" id="typeMsg" placeholder="Type message here"></textarea>
-							<span id = "addMsgWarning"></span>
-							<div id="createMsg">
-								Create Message
-							</div>
-						</div>
+				<div id="msgPopupBox">
+					<div id="closeMsgPopup">&times;</div>
+					<div id="msgPopupTitle">Message:</div>
+					<textarea rows="10" id="typeMsg" placeholder="Type message here"></textarea>
+					<span id = "addMsgWarning"></span>
+					<div id="createMsg">
+						Create Message
 					</div>
+				</div>
+			</div>
+
 			<!--BROADCAST-->
 			<div class="" id="broadcast"><!--default screen on load-->
+				<div id="broadcastTopBar">
+					<div id="broadcastTitle">Broadcast</div>
+				</div>
 				<div id="msgMakerSpace">
 					<div id="msgMaker">
 						
@@ -76,7 +114,6 @@
 
 						<div id="sendButton">
 							Send!
-							<i class="fa fa-spinner fa-spin"></i>
 						</div>
 					</div>
 				</div>
@@ -116,6 +153,7 @@
 					</div>
 				</div>
 
+
 			</div>
 
 
@@ -124,29 +162,34 @@
 				<div id="grpTopBar">
 					<div id="topTitle">Manage Groups</div>
 
-					<div id="trashGrp">
-						<img src="./images/trashBin.png">
-					</div>
+					<div id="grpTools" class="verticalDots">
+						<img class="dropIcon" src="./images/vertical-dots.png">
+						<div id="grpToolCont" class="dropdown">
+							<div id="trashGrp">
+								<img src="./images/trashBin.png">
+							</div>
 
-					<div id="addGrp">
-						<img src="./images/addBtn.png">
-					</div>
+							<div id="addGrp">
+								<img src="./images/addBtn.png">
+							</div>
 
-					<div id="reloadGrp">
-						<img src="./images/reload.png">
-					</div>
+							<div id="reloadGrp">
+								<img src="./images/reload.png">
+							</div>
 
-					<div id="searchGrp">
-						<img src="./images/search.png">
-					</div>
+							<div id="searchGrp" class="searchAll">
+								<img src="./images/search.png">
+							</div>
 
-					<div id="searchBox">
-						<input type="text" id="searchInput" onkeyup="grpSearch();" placeholder=" Search for groups..">
+						</div>
+							<div id="searchBox">
+								<input type="text" id="searchInput" onkeyup="grpSearch();" placeholder=" Search for groups..">
+							</div>
 					</div>
 				</div>
 
 				<div id="addPopup">
-					<div id="popupBox">
+					<div id="popupBox" class="mobilePopup">
 						<div id="closePopup">&times;</div>
 						<div id="popupTitle">Group Name:</div>
 						<input id="groupText" type="text">
@@ -159,7 +202,7 @@
 				</div>
 
 				<div id="deletePopup">
-					<div id="deleteBox">
+					<div id="deleteBox" class="mobilePopup">
 						<div id="closeDelPopup">&times;</div>
 						<div id="popupDelTitle">
 							Are you sure you want to delete:
@@ -203,7 +246,7 @@
 					</tbody>
 				</table>
 
-				<div class="spinnerWrap">
+				<div class="spinnerWrap" id="grpSpinner">
 					<div class="spinner">
 					  <div class="rect1"></div>
 					  <div class="rect2"></div>
@@ -219,7 +262,6 @@
 			<div class="hidden" id="subscribers">
 				<div id="subsTopBar">
 					<div id="subsTitle">Manage Subscriptions</div>
-
 					<div id="grpTab">
 						Groups
 					</div>
@@ -227,34 +269,40 @@
 					<div id="subsTab">
 						All Subscriptions
 					</div>
+					
+					<div id="subTools" class="verticalDots">
+						<img class="dropIcon" src="./images/vertical-dots.png">
+						<div id="subToolCont" class="dropdown ">
+							<!-- the icons go here -->
+							<div id="subsIconRow">
+								<div id="addSub">
+									<img src="./images/addBtn.png">
+								</div>
 
-					<div id="subsIconRow">
-						<div id="addSub">
-							<img src="./images/addBtn.png">
-						</div>
+								<div id="trashSub">
+									<img src="./images/trashBin.png">
+								</div>
 
-						<div id="trashSub">
-							<img src="./images/trashBin.png">
-						</div>
+								<div id="reloadSub">
+									<img src="./images/reload.png">
+								</div>
 
-						<div id="reloadSub">
-							<img src="./images/reload.png">
-						</div>
+								<div id="searchSub" class="searchAll">
+									<img src="./images/search.png">
+								</div>
 
-						<div id="searchSub">
-							<img src="./images/search.png">
-						</div>
-
-						<div id="searchBoxSub">
-							<input type="text" id="searchInputSub" onkeyup="subSearch();" placeholder=" Search for subs...">
-						</div>
-
+								<div id="searchBoxSub">
+									<input type="text" id="searchInputSub" onkeyup="subSearch();" placeholder=" Search for subs...">
+								</div>
+							</div>
+						</div>	
 					</div>
+
 
 				</div>
 
 				<div id="addSubPop">
-					<div id="addSubBox">
+					<div id="addSubBox" class="mobilePopup">
 						<div id="closeAddSub">&times;</div>
 						<div id="popSubTitle">Subscriber Information:</div>
 
@@ -289,7 +337,7 @@
 				</div>
 
 				<div id="delSubPop">
-					<div id="delSubBox">
+					<div id="delSubBox" class="mobilePopup">
 						<div id="closeDelSub">&times;</div>
 						<div id="delSubTitle">
 							Are you sure you want to remove:
@@ -369,34 +417,49 @@
 				<div id="msgsTopBar">
 					<div id="msgsTitle">Manage Messages</div>
 					
-					<div id="trashMsg" style="opacity: 0.5;">
-						<img src="./images/trashBin.png">
+					<div id="msgTools" class="verticalDots">
+						<img class="dropIcon" src="./images/vertical-dots.png">
+						<div id="msgToolCont" class="dropdown ">
+							<div id="trashMsg" class="afterBtn">
+								<img src="./images/trashBin.png">
+							</div>
+
+							<div id="addMsg" class="afterBtn">
+								<img src="./images/addBtn.png">
+							</div>
+
+							<div id="reloadMsg">
+								<img src="./images/reload.png">
+							</div>
+
+							<div id="searchMsg" class="searchAll">
+								<img src="./images/search.png">
+							</div>
+
+							<div id="msgSearchBox">
+								<input type="text" id="msgSearchInput" onkeyup="msgSearch();" placeholder=" Search for messages..">
+							</div>
+						</div>
 					</div>
-					<div id="reloadMsg">
-						<img src="./images/reload.png">
-					</div>
-					<div id="searchMsg">
-						<img src="./images/search.png">
-					</div>
-					<div id="addMsg">
-						<img src="./images/addBtn.png">
-					</div>
+
+					
 				</div>
 
-				<div id="openOldMsg">
-					<div id="addMsgPopup">
-						<div id="msgPopupBox">
+				<div id="oldMsgContainer">
+					<div id="addMsgPopup" class="msgAfter">
+						<div id="msgPopupBox" class="mobilePopup">
 							<div id="closeMsgPopup">&times;</div>
 							<div id="msgPopupTitle">Message:</div>
 							<textarea rows="10" id="typeMsg" placeholder="Type message here"></textarea>
+							<span id = "addMsgWarning"></span>
 							<div id="createMsg">
 								Create Message
 							</div>
 						</div>
 					</div>
 
-					<div id="deleteMsgPopup">
-						<div id="deleteMsgBox">
+					<div id="deleteMsgPopup" class="msgAfter">
+						<div id="deleteMsgBox" class="mobilePopup">
 							<div id="closeMsgDelPopup">&times;</div>
 							<div id="popupMsgDelTitle">
 								Are you sure you want to delete:
@@ -416,8 +479,8 @@
 						</div>
 					</div>
 
-					<div id="editMsgPopup">
-						<div id="editMsgBox">
+					<div id="editMsgPopup" class="msgAfter">
+						<div id="editMsgBox" class="mobilePopup">
 							<div id="closeMsgEditPopup">&times;</div>
 							<div id="popupMsgEditTitle">You are now editing:</div>
 							<textarea rows="10" id="editMsgHere" placeholder="Your original message has been deleted. If unintentional, exit now."></textarea>
@@ -426,56 +489,52 @@
 						</div>
 					</div>
 
-					<div id="oldMsgContainer">
-							
-						<div id="msgCol"> <!-- messages are generate dynamically in this div -->
-	
-						</div>
+					<div id="msgCol"> <!-- messages are generate dynamically in this div -->
 
+					</div>
+
+					
+					<div class="spinnerWrap">
+						<div class="spinner">
+						  <div class="rect1"></div>
+						  <div class="rect2"></div>
+						  <div class="rect3"></div>
+						  <div class="rect4"></div>
+						  <div class="rect5"></div>
+						</div>
+					</div>
 						
-						<div class="spinnerWrap">
-							<div class="spinner">
-							  <div class="rect1"></div>
-							  <div class="rect2"></div>
-							  <div class="rect3"></div>
-							  <div class="rect4"></div>
-							  <div class="rect5"></div>
-							</div>
-						</div>
-					</div>
-					
 				</div>
-
-				<div id="openNewMsg">
-					<div id="newMsgContainer">
-						<h2>Write Custom Message:</h2>
-			 			<textarea name="generalText" rows="15" id="typeMsg" placeholder="Type message here"></textarea>
-			 			<div id="submitMsg">Create</div>
-					</div>
 					
-				</div>
 
 			</div>
 
 
 			<!--QUICK SEND-->
 			<div class="hidden" id="quickSend"><!--broadcasts preset messages to EVERYONE-->
-				<div id="msgTypePanel">
-					<div class="tab"><h3>Type</h3></div>
-					<div class="scroll">
-							<div class="spinnerWrap">
-						<div class="spinner">
-							<div class="rect1"></div>
-							<div class="rect2"></div>
-							<div class="rect3"></div>
-							<div class="rect4"></div>
-							<div class="rect5"></div>
-						</div>
+				<div id="quickSendTopBar">
+					<div id = "qsBack">
+						<img src="./images/back.png">
 					</div>
+					<div id="quickSendTitle">
+						<div id="typeTitle">Type</div>
+						<div id="qsmsgTitle">Message</div>
+					</div>
+        		</div>
+				<div id="msgTypePanel">
+					<div class="scroll">
+						<div class="spinnerWrap">
+							<div class="spinner">
+								<div class="rect1"></div>
+								<div class="rect2"></div>
+								<div class="rect3"></div>
+								<div class="rect4"></div>
+								<div class="rect5"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id="msgPanel">
-					<div class="tab"><h3>Message</h3></div>
 					<div id="qsContainer">
 						<div id= "qsType">
 							<input type="text" size="25" id="editTypeBox">
@@ -488,7 +547,6 @@
 							
 							<textarea id="editBox" class="msgBox"></textarea>
 							<p id="note">Note: Use { } to create a textbox</p>
-
 							<div id="editButton" onclick="editMsg()">
 								<img id ="edit-saveMsg" src="./images/edit.png">
 							</div>
